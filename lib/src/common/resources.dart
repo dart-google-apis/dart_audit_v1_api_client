@@ -33,13 +33,11 @@ class ActivitiesResource extends Resource {
    *   Minimum: 1
    *   Maximum: 1000
    *
-   * [parameters] - Event parameters in the form [parameter1 name]:[parameter1 value],[parameter2 name]:[parameter2 value],...
-   *
    * [startTime] - Return events which occured at or after this time.
    *
    * [optParams] - Additional query parameters
    */
-  Future<Activities> list(String customerId, String applicationId, {String actorApplicationId, String actorEmail, String actorIpAddress, String caller, String continuationToken, String endTime, String eventName, int maxResults, String parameters, String startTime, Map optParams}) {
+  Future<Activities> list(String customerId, String applicationId, {String actorApplicationId, String actorEmail, String actorIpAddress, String caller, String continuationToken, String endTime, String eventName, int maxResults, String startTime, Map optParams}) {
     var completer = new Completer();
     var url = "{customerId}/{applicationId}";
     var urlParams = new Map();
@@ -61,7 +59,6 @@ class ActivitiesResource extends Resource {
     if (endTime != null) queryParams["endTime"] = endTime;
     if (eventName != null) queryParams["eventName"] = eventName;
     if (maxResults != null) queryParams["maxResults"] = maxResults;
-    if (parameters != null) queryParams["parameters"] = parameters;
     if (startTime != null) queryParams["startTime"] = startTime;
     if (optParams != null) {
       optParams.forEach((key, value) {
