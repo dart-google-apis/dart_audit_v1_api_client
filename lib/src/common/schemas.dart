@@ -3,16 +3,16 @@ part of audit_v1_api_client;
 class Activities {
 
   /** Each record in read response. */
-  List<Activity> items;
+  core.List<Activity> items;
 
   /** Kind of list response this is. */
-  String kind;
+  core.String kind;
 
   /** Next page URL. */
-  String next;
+  core.String next;
 
   /** Create new Activities from JSON data */
-  Activities.fromJson(Map json) {
+  Activities.fromJson(core.Map json) {
     if (json.containsKey("items")) {
       items = [];
       json["items"].forEach((item) {
@@ -28,11 +28,11 @@ class Activities {
   }
 
   /** Create JSON Object for Activities */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (items != null) {
-      output["items"] = new List();
+      output["items"] = new core.List();
       items.forEach((item) {
         output["items"].add(item.toJson());
       });
@@ -48,7 +48,7 @@ class Activities {
   }
 
   /** Return String representation of Activities */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -58,22 +58,22 @@ class Activity {
   ActivityActor actor;
 
   /** Activity events. */
-  List<ActivityEvents> events;
+  core.List<ActivityEvents> events;
 
   /** Unique identifier for each activity record. */
   ActivityId id;
 
   /** IP Address of the user doing the action. */
-  String ipAddress;
+  core.String ipAddress;
 
   /** Kind of resource this is. */
-  String kind;
+  core.String kind;
 
   /** Domain of source customer. */
-  String ownerDomain;
+  core.String ownerDomain;
 
   /** Create new Activity from JSON data */
-  Activity.fromJson(Map json) {
+  Activity.fromJson(core.Map json) {
     if (json.containsKey("actor")) {
       actor = new ActivityActor.fromJson(json["actor"]);
     }
@@ -98,14 +98,14 @@ class Activity {
   }
 
   /** Create JSON Object for Activity */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (actor != null) {
       output["actor"] = actor.toJson();
     }
     if (events != null) {
-      output["events"] = new List();
+      output["events"] = new core.List();
       events.forEach((item) {
         output["events"].add(item.toJson());
       });
@@ -127,7 +127,7 @@ class Activity {
   }
 
   /** Return String representation of Activity */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -135,19 +135,19 @@ class Activity {
 class ActivityId {
 
   /** Application ID of the source application. */
-  String applicationId;
+  core.String applicationId;
 
   /** Obfuscated customer ID of the source customer. */
-  String customerId;
+  core.String customerId;
 
   /** Time of occurrence of the activity. */
-  String time;
+  core.String time;
 
   /** Unique qualifier if multiple events have the same time. */
-  String uniqQualifier;
+  core.String uniqQualifier;
 
   /** Create new ActivityId from JSON data */
-  ActivityId.fromJson(Map json) {
+  ActivityId.fromJson(core.Map json) {
     if (json.containsKey("applicationId")) {
       applicationId = json["applicationId"];
     }
@@ -163,8 +163,8 @@ class ActivityId {
   }
 
   /** Create JSON Object for ActivityId */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (applicationId != null) {
       output["applicationId"] = applicationId;
@@ -183,23 +183,23 @@ class ActivityId {
   }
 
   /** Return String representation of ActivityId */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
 class ActivityEvents {
 
   /** Type of event. */
-  String eventType;
+  core.String eventType;
 
   /** Name of event. */
-  String name;
+  core.String name;
 
   /** Event parameters. */
-  List<ActivityEventsParameters> parameters;
+  core.List<ActivityEventsParameters> parameters;
 
   /** Create new ActivityEvents from JSON data */
-  ActivityEvents.fromJson(Map json) {
+  ActivityEvents.fromJson(core.Map json) {
     if (json.containsKey("eventType")) {
       eventType = json["eventType"];
     }
@@ -215,8 +215,8 @@ class ActivityEvents {
   }
 
   /** Create JSON Object for ActivityEvents */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (eventType != null) {
       output["eventType"] = eventType;
@@ -225,7 +225,7 @@ class ActivityEvents {
       output["name"] = name;
     }
     if (parameters != null) {
-      output["parameters"] = new List();
+      output["parameters"] = new core.List();
       parameters.forEach((item) {
         output["parameters"].add(item.toJson());
       });
@@ -235,20 +235,20 @@ class ActivityEvents {
   }
 
   /** Return String representation of ActivityEvents */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
 class ActivityEventsParameters {
 
   /** Name of the parameter. */
-  String name;
+  core.String name;
 
   /** Value of the parameter. */
-  String value;
+  core.String value;
 
   /** Create new ActivityEventsParameters from JSON data */
-  ActivityEventsParameters.fromJson(Map json) {
+  ActivityEventsParameters.fromJson(core.Map json) {
     if (json.containsKey("name")) {
       name = json["name"];
     }
@@ -258,8 +258,8 @@ class ActivityEventsParameters {
   }
 
   /** Create JSON Object for ActivityEventsParameters */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (name != null) {
       output["name"] = name;
@@ -272,7 +272,7 @@ class ActivityEventsParameters {
   }
 
   /** Return String representation of ActivityEventsParameters */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -280,19 +280,19 @@ class ActivityEventsParameters {
 class ActivityActor {
 
   /** ID of application which interacted on behalf of the user. */
-  String applicationId;
+  core.String applicationId;
 
   /** User or OAuth 2LO request. */
-  String callerType;
+  core.String callerType;
 
   /** Email address of the user. */
-  String email;
+  core.String email;
 
   /** For OAuth 2LO API requests, consumer_key of the requestor. */
-  String key;
+  core.String key;
 
   /** Create new ActivityActor from JSON data */
-  ActivityActor.fromJson(Map json) {
+  ActivityActor.fromJson(core.Map json) {
     if (json.containsKey("applicationId")) {
       applicationId = json["applicationId"];
     }
@@ -308,8 +308,8 @@ class ActivityActor {
   }
 
   /** Create JSON Object for ActivityActor */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (applicationId != null) {
       output["applicationId"] = applicationId;
@@ -328,7 +328,7 @@ class ActivityActor {
   }
 
   /** Return String representation of ActivityActor */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 

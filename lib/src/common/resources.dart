@@ -37,13 +37,13 @@ class ActivitiesResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<Activities> list(String customerId, String applicationId, {String actorApplicationId, String actorEmail, String actorIpAddress, String caller, String continuationToken, String endTime, String eventName, int maxResults, String startTime, Map optParams}) {
-    var completer = new Completer();
+  async.Future<Activities> list(core.String customerId, core.String applicationId, {core.String actorApplicationId, core.String actorEmail, core.String actorIpAddress, core.String caller, core.String continuationToken, core.String endTime, core.String eventName, core.int maxResults, core.String startTime, core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "{customerId}/{applicationId}";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (actorApplicationId != null) queryParams["actorApplicationId"] = actorApplicationId;
     if (actorEmail != null) queryParams["actorEmail"] = actorEmail;
     if (actorIpAddress != null) queryParams["actorIpAddress"] = actorIpAddress;
