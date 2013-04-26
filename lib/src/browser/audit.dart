@@ -4,8 +4,8 @@ part of audit_v1_api_browser;
 /** Lets you access user activities in your enterprise made through various applications. */
 class Audit extends BrowserClient {
 
-  ActivitiesResource _activities;
-  ActivitiesResource get activities => _activities;
+  ActivitiesResource_ _activities;
+  ActivitiesResource_ get activities => _activities;
 
   /**
    * Data format for the response.
@@ -59,6 +59,6 @@ class Audit extends BrowserClient {
   Audit([oauth.OAuth2 auth]) : super(auth) {
     basePath = "/apps/reporting/audit/v1/";
     rootUrl = "https://www.googleapis.com:443/";
-    _activities = new ActivitiesResource(this);
+    _activities = new ActivitiesResource_(this);
   }
 }

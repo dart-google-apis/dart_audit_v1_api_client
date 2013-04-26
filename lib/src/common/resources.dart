@@ -1,8 +1,8 @@
 part of audit_v1_api_client;
 
-class ActivitiesResource extends Resource {
+class ActivitiesResource_ extends Resource {
 
-  ActivitiesResource(Client client) : super(client) {
+  ActivitiesResource_(Client client) : super(client) {
   }
 
   /**
@@ -69,7 +69,7 @@ class ActivitiesResource extends Resource {
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
