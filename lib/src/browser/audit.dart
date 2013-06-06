@@ -58,7 +58,7 @@ class Audit extends BrowserClient {
 
   Audit([oauth.OAuth2 auth]) : super(auth) {
     basePath = "/apps/reporting/audit/v1/";
-    rootUrl = "https://www.googleapis.com:443/";
+    rootUrl = "https://www.googleapis.com/";
     _activities = new ActivitiesResource_(this);
   }
 }

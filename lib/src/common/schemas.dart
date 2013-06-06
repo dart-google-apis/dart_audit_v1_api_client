@@ -135,7 +135,7 @@ class Activity {
 class ActivityId {
 
   /** Application ID of the source application. */
-  core.String applicationId;
+  core.int applicationId;
 
   /** Obfuscated customer ID of the source customer. */
   core.String customerId;
@@ -144,7 +144,7 @@ class ActivityId {
   core.String time;
 
   /** Unique qualifier if multiple events have the same time. */
-  core.String uniqQualifier;
+  core.int uniqQualifier;
 
   /** Create new ActivityId from JSON data */
   ActivityId.fromJson(core.Map json) {
@@ -280,7 +280,7 @@ class ActivityEventsParameters {
 class ActivityActor {
 
   /** ID of application which interacted on behalf of the user. */
-  core.String applicationId;
+  core.int applicationId;
 
   /** User or OAuth 2LO request. */
   core.String callerType;
