@@ -38,7 +38,6 @@ class ActivitiesResource_ extends Resource {
    * [optParams] - Additional query parameters
    */
   async.Future<Activities> list(core.String customerId, core.int applicationId, {core.int actorApplicationId, core.String actorEmail, core.String actorIpAddress, core.String caller, core.String continuationToken, core.String endTime, core.String eventName, core.int maxResults, core.String startTime, core.Map optParams}) {
-    var completer = new async.Completer();
     var url = "{customerId}/{applicationId}";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -69,16 +68,13 @@ class ActivitiesResource_ extends Resource {
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "GET", urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(new Activities.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new Activities.fromJson(data));
   }
 }
 

@@ -149,7 +149,11 @@ class ActivityId {
   /** Create new ActivityId from JSON data */
   ActivityId.fromJson(core.Map json) {
     if (json.containsKey("applicationId")) {
-      applicationId = json["applicationId"];
+      if(json["applicationId"] is core.String){
+        applicationId = core.int.parse(json["applicationId"]);
+      }else{
+        applicationId = json["applicationId"];
+      }
     }
     if (json.containsKey("customerId")) {
       customerId = json["customerId"];
@@ -158,7 +162,11 @@ class ActivityId {
       time = json["time"];
     }
     if (json.containsKey("uniqQualifier")) {
-      uniqQualifier = json["uniqQualifier"];
+      if(json["uniqQualifier"] is core.String){
+        uniqQualifier = core.int.parse(json["uniqQualifier"]);
+      }else{
+        uniqQualifier = json["uniqQualifier"];
+      }
     }
   }
 
@@ -294,7 +302,11 @@ class ActivityActor {
   /** Create new ActivityActor from JSON data */
   ActivityActor.fromJson(core.Map json) {
     if (json.containsKey("applicationId")) {
-      applicationId = json["applicationId"];
+      if(json["applicationId"] is core.String){
+        applicationId = core.int.parse(json["applicationId"]);
+      }else{
+        applicationId = json["applicationId"];
+      }
     }
     if (json.containsKey("callerType")) {
       callerType = json["callerType"];
