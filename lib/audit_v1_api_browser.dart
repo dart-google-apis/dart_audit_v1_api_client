@@ -1,14 +1,14 @@
-library audit_v1_api_browser;
+library audit_v1_api.browser;
 
-import "audit_v1_api_client.dart";
-export "audit_v1_api_client.dart";
-
-import "dart:core" as core;
-import "dart:html" as html;
-import "dart:async" as async;
-import "dart:json" as JSON;
-import "package:js/js.dart" as js;
 import "package:google_oauth2_client/google_oauth2_browser.dart" as oauth;
 
-part "src/browser/browser_client.dart";
-part "src/browser/audit.dart";
+import 'package:google_audit_v1_api/src/cloud_api_browser.dart';
+import "package:google_audit_v1_api/audit_v1_api_client.dart";
+
+/** Lets you access user activities in your enterprise made through various applications. */
+class Audit extends Client with BrowserClient {
+
+  final oauth.OAuth2 auth;
+
+  Audit([oauth.OAuth2 this.auth]);
+}

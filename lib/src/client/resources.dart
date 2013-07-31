@@ -1,9 +1,11 @@
-part of audit_v1_api_client;
+part of audit_v1_api;
 
-class ActivitiesResource_ extends Resource {
+class ActivitiesResource_ {
 
-  ActivitiesResource_(Client client) : super(client) {
-  }
+  final Client _client;
+
+  ActivitiesResource_(Client client) :
+      _client = client;
 
   /**
    * Retrieves a list of activities for a specific customer and application.

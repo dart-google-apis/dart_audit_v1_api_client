@@ -1,4 +1,4 @@
-part of audit_v1_api_client;
+part of audit_v1_api;
 
 class Activities {
 
@@ -14,10 +14,7 @@ class Activities {
   /** Create new Activities from JSON data */
   Activities.fromJson(core.Map json) {
     if (json.containsKey("items")) {
-      items = [];
-      json["items"].forEach((item) {
-        items.add(new Activity.fromJson(item));
-      });
+      items = json["items"].map((itemsItem) => new Activity.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
@@ -32,10 +29,7 @@ class Activities {
     var output = new core.Map();
 
     if (items != null) {
-      output["items"] = new core.List();
-      items.forEach((item) {
-        output["items"].add(item.toJson());
-      });
+      output["items"] = items.map((itemsItem) => itemsItem.toJson()).toList();
     }
     if (kind != null) {
       output["kind"] = kind;
@@ -78,10 +72,7 @@ class Activity {
       actor = new ActivityActor.fromJson(json["actor"]);
     }
     if (json.containsKey("events")) {
-      events = [];
-      json["events"].forEach((item) {
-        events.add(new ActivityEvents.fromJson(item));
-      });
+      events = json["events"].map((eventsItem) => new ActivityEvents.fromJson(eventsItem)).toList();
     }
     if (json.containsKey("id")) {
       id = new ActivityId.fromJson(json["id"]);
@@ -105,10 +96,7 @@ class Activity {
       output["actor"] = actor.toJson();
     }
     if (events != null) {
-      output["events"] = new core.List();
-      events.forEach((item) {
-        output["events"].add(item.toJson());
-      });
+      output["events"] = events.map((eventsItem) => eventsItem.toJson()).toList();
     }
     if (id != null) {
       output["id"] = id.toJson();
@@ -131,66 +119,58 @@ class Activity {
 
 }
 
-/** Unique identifier for each activity record. */
-class ActivityId {
+/** User doing the action. */
+class ActivityActor {
 
-  /** Application ID of the source application. */
+  /** ID of application which interacted on behalf of the user. */
   core.int applicationId;
 
-  /** Obfuscated customer ID of the source customer. */
-  core.String customerId;
+  /** User or OAuth 2LO request. */
+  core.String callerType;
 
-  /** Time of occurrence of the activity. */
-  core.String time;
+  /** Email address of the user. */
+  core.String email;
 
-  /** Unique qualifier if multiple events have the same time. */
-  core.int uniqQualifier;
+  /** For OAuth 2LO API requests, consumer_key of the requestor. */
+  core.String key;
 
-  /** Create new ActivityId from JSON data */
-  ActivityId.fromJson(core.Map json) {
+  /** Create new ActivityActor from JSON data */
+  ActivityActor.fromJson(core.Map json) {
     if (json.containsKey("applicationId")) {
-      if(json["applicationId"] is core.String){
-        applicationId = core.int.parse(json["applicationId"]);
-      }else{
-        applicationId = json["applicationId"];
-      }
+      applicationId = (json["applicationId"] is core.String) ? core.int.parse(json["applicationId"]) : json["applicationId"];
     }
-    if (json.containsKey("customerId")) {
-      customerId = json["customerId"];
+    if (json.containsKey("callerType")) {
+      callerType = json["callerType"];
     }
-    if (json.containsKey("time")) {
-      time = json["time"];
+    if (json.containsKey("email")) {
+      email = json["email"];
     }
-    if (json.containsKey("uniqQualifier")) {
-      if(json["uniqQualifier"] is core.String){
-        uniqQualifier = core.int.parse(json["uniqQualifier"]);
-      }else{
-        uniqQualifier = json["uniqQualifier"];
-      }
+    if (json.containsKey("key")) {
+      key = json["key"];
     }
   }
 
-  /** Create JSON Object for ActivityId */
+  /** Create JSON Object for ActivityActor */
   core.Map toJson() {
     var output = new core.Map();
 
     if (applicationId != null) {
       output["applicationId"] = applicationId;
     }
-    if (customerId != null) {
-      output["customerId"] = customerId;
+    if (callerType != null) {
+      output["callerType"] = callerType;
     }
-    if (time != null) {
-      output["time"] = time;
+    if (email != null) {
+      output["email"] = email;
     }
-    if (uniqQualifier != null) {
-      output["uniqQualifier"] = uniqQualifier;
+    if (key != null) {
+      output["key"] = key;
     }
 
     return output;
   }
 
-  /** Return String representation of ActivityId */
+  /** Return String representation of ActivityActor */
   core.String toString() => JSON.stringify(this.toJson());
 
 }
@@ -215,10 +195,7 @@ class ActivityEvents {
       name = json["name"];
     }
     if (json.containsKey("parameters")) {
-      parameters = [];
-      json["parameters"].forEach((item) {
-        parameters.add(new ActivityEventsParameters.fromJson(item));
-      });
+      parameters = json["parameters"].map((parametersItem) => new ActivityEventsParameters.fromJson(parametersItem)).toList();
     }
   }
 
@@ -233,10 +210,7 @@ class ActivityEvents {
       output["name"] = name;
     }
     if (parameters != null) {
-      output["parameters"] = new core.List();
-      parameters.forEach((item) {
-        output["parameters"].add(item.toJson());
-      });
+      output["parameters"] = parameters.map((parametersItem) => parametersItem.toJson()).toList();
     }
 
     return output;
@@ -284,63 +258,72 @@ class ActivityEventsParameters {
 
 }
 
-/** User doing the action. */
-class ActivityActor {
+/** Unique identifier for each activity record. */
+class ActivityId {
 
-  /** ID of application which interacted on behalf of the user. */
+  /** Application ID of the source application. */
   core.int applicationId;
 
-  /** User or OAuth 2LO request. */
-  core.String callerType;
+  /** Obfuscated customer ID of the source customer. */
+  core.String customerId;
 
-  /** Email address of the user. */
-  core.String email;
+  /** Time of occurrence of the activity. */
+  core.String time;
 
-  /** For OAuth 2LO API requests, consumer_key of the requestor. */
-  core.String key;
+  /** Unique qualifier if multiple events have the same time. */
+  core.int uniqQualifier;
 
-  /** Create new ActivityActor from JSON data */
-  ActivityActor.fromJson(core.Map json) {
+  /** Create new ActivityId from JSON data */
+  ActivityId.fromJson(core.Map json) {
     if (json.containsKey("applicationId")) {
-      if(json["applicationId"] is core.String){
-        applicationId = core.int.parse(json["applicationId"]);
-      }else{
-        applicationId = json["applicationId"];
-      }
+      applicationId = (json["applicationId"] is core.String) ? core.int.parse(json["applicationId"]) : json["applicationId"];
     }
-    if (json.containsKey("callerType")) {
-      callerType = json["callerType"];
+    if (json.containsKey("customerId")) {
+      customerId = json["customerId"];
     }
-    if (json.containsKey("email")) {
-      email = json["email"];
+    if (json.containsKey("time")) {
+      time = json["time"];
     }
-    if (json.containsKey("key")) {
-      key = json["key"];
+    if (json.containsKey("uniqQualifier")) {
+      uniqQualifier = (json["uniqQualifier"] is core.String) ? core.int.parse(json["uniqQualifier"]) : json["uniqQualifier"];
     }
   }
 
-  /** Create JSON Object for ActivityActor */
+  /** Create JSON Object for ActivityId */
   core.Map toJson() {
     var output = new core.Map();
 
     if (applicationId != null) {
       output["applicationId"] = applicationId;
     }
-    if (callerType != null) {
-      output["callerType"] = callerType;
+    if (customerId != null) {
+      output["customerId"] = customerId;
     }
-    if (email != null) {
-      output["email"] = email;
+    if (time != null) {
+      output["time"] = time;
     }
-    if (key != null) {
-      output["key"] = key;
+    if (uniqQualifier != null) {
+      output["uniqQualifier"] = uniqQualifier;
     }
 
     return output;
   }
 
-  /** Return String representation of ActivityActor */
+  /** Return String representation of ActivityId */
   core.String toString() => JSON.stringify(this.toJson());
 
 }
 
+core.Map _mapMap(core.Map source, [core.Object convert(core.Object source) = null]) {
+  assert(source != null);
+  var result = new dart_collection.LinkedHashMap();
+  source.forEach((core.String key, value) {
+    assert(key != null);
+    if(convert == null) {
+      result[key] = value;
+    } else {
+      result[key] = convert(value);
+    }
+  });
+  return result;
+}
