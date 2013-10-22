@@ -42,7 +42,7 @@ class Activities {
   }
 
   /** Return String representation of Activities */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -115,7 +115,7 @@ class Activity {
   }
 
   /** Return String representation of Activity */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -171,7 +171,7 @@ class ActivityActor {
   }
 
   /** Return String representation of ActivityActor */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -217,7 +217,7 @@ class ActivityEvents {
   }
 
   /** Return String representation of ActivityEvents */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -254,7 +254,7 @@ class ActivityEventsParameters {
   }
 
   /** Return String representation of ActivityEventsParameters */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -310,7 +310,7 @@ class ActivityId {
   }
 
   /** Return String representation of ActivityId */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
